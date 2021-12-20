@@ -70,52 +70,31 @@ fun main() {
     //voy a dar por hecho que es un switch después de terminar el algoritmo de haber introducido el número/nombre
     //Tampoco termino de entender lo de filtrar texto a buscar. Texto a buscar de nombre? numero? Voy a dar por hecho que son ambos
 
-    println("----------------------------------------------------------")
-    println("Introduce un número referente a los comandos especiales:  ")
-    println("----------------------------------------------------------")
-    println("         1 - Adios (Terminar el programa)                 ")
-    println("                    2 - Listado                           ")
-    println("             3 - Filtrar Texto a buscar                   ")
-    println("----------------------------------------------------------")
-    var eleccion = readLine()?.toInt()
+    var continuar: Boolean = true
 
-    when(eleccion){
+    while (continuar == true) {
 
-        1 -> {println("Se acabó el programa.")}
-        2 -> {println(Input.listaContactosOrdenados())
-            println("----------------------------------------------------------")
-            println("Introduce un número referente a los comandos especiales:  ")
-            println("----------------------------------------------------------")
-            println("         1 - Adios (Terminar el programa)                 ")
-            println("                    2 - Listado                           ")
-            println("             3 - Filtrar Texto a buscar                   ")
-            println("----------------------------------------------------------")
-            eleccion = readLine()?.toInt()
-        }
+        println("----------------------------------------------------------")
+        println("Introduce un número referente a los comandos especiales:  ")
+        println("----------------------------------------------------------")
+        println("         1 - Adios (Terminar el programa)                 ")
+        println("                    2 - Listado                           ")
+        println("             3 - Filtrar Texto a buscar                   ")
+        println("----------------------------------------------------------")
+        var eleccion = readLine()?.toInt()!!
 
-        3->{
-            println("Introduce el texto a buscar")
-            var textoABuscar: String = readLine().toString()
-            if (Input.textoSimilar(textoABuscar).isEmpty()) println("No hay ningún contacto") else println(Input.textoSimilar(textoABuscar))
-            println("----------------------------------------------------------")
-            println("Introduce un número referente a los comandos especiales:  ")
-            println("----------------------------------------------------------")
-            println("         1 - Adios (Terminar el programa)                 ")
-            println("                    2 - Listado                           ")
-            println("             3 - Filtrar Texto a buscar                   ")
-            println("----------------------------------------------------------")
-            eleccion = readLine()?.toInt()
-        }
+        when (eleccion) {
 
-        else -> {println("No has introducido una opción válida, por favor introduce uno de los siguientes números:")
-            println("----------------------------------------------------------")
-            println("Introduce un número referente a los comandos especiales:  ")
-            println("----------------------------------------------------------")
-            println("         1 - Adios (Terminar el programa)                 ")
-            println("                    2 - Listado                           ")
-            println("             3 - Filtrar Texto a buscar                   ")
-            println("----------------------------------------------------------")
-            eleccion = readLine()?.toInt()
+            1 -> { println("Se acabó el programa."); continuar = false }
+            2 -> {println(Input.listaContactosOrdenados())}
+
+            3 -> {
+                println("Introduce el texto a buscar")
+                var textoABuscar: String = readLine().toString()
+                if (Input.textoSimilar(textoABuscar).isEmpty()) println("No hay ningún contacto") else println(Input.textoSimilar(textoABuscar))
+            }
+
+            else -> {/*Vuelta al while*/}
         }
     }
 
